@@ -1,5 +1,7 @@
 package calculator
 
-func Add(x, y float64) float64 {
+type Engine struct{}
+
+func (e Engine) Add(x, y float64) float64 {
 	return x + y
 }
