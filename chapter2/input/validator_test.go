@@ -13,6 +13,12 @@ func TestCheckInput(t *testing.T) {
 		err := v.CheckInput(validOperators[0], []float64{2.5, 3.5})
 		require.NoError(t, err)
 	})
+
+	t.Run("invalid operator", func(t *testing.T) {
+		v := setup(t, validOperators)
+		err := v.CheckInput("-", []float64{2.5, 3.5})
+		require.NotNil(t, err)
+	})
 }
 
 func setup(t *testing.T, validOps []string) *input.Validator {
