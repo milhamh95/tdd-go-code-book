@@ -17,6 +17,6 @@ func Test_Addition(t *testing.T) {
 	t.Run("invalid number", func(t *testing.T) {
 		res, err := calculator.Addition(-1, -1)
 		require.Equal(t, 0, res)
-		require.ErrorIs(t, errors.New("invalid number"), err)
+		require.EqualError(t, errors.New("invalid number"), err.Error())
 	})
 }
