@@ -1,12 +1,13 @@
 package calculator_test
 
 import (
-	"github.com/stretchr/testify/require"
+	"tdd-go-code-book/chapter2/calculator"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestAdd(t *testing.T) {
-	res := calculator.Add(1, 1)
-
-	require.Equal(t, 2, res)
+	res := calculator.Add(1.0, 1.0)
+	require.Equal(t, 2.0, res)
 }
