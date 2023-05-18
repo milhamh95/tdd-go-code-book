@@ -2,11 +2,41 @@ package calculator_test
 
 import (
 	"github.com/stretchr/testify/require"
+	"log"
+	"os"
 	"tdd-go-code-book/chapter2/calculator"
 	"testing"
 )
 
+// main method will be run before any of other test in this package.
+// we're only able to define one TestMain function per package
+func TestMain(m *testing.M) {
+	setup()
+
+	e := m.Run()
+
+	teardown()
+
+	os.Exit(e)
+}
+
+func setup() {
+	log.Println("setting up")
+}
+
+func teardown() {
+	log.Println("tearing down")
+}
+
+func init() {
+	log.Println("init setup")
+}
+
 func TestAdd(t *testing.T) {
+	defer func() {
+		log.Println("deferred tearing down")
+	}()
+
 	ce := calculator.Engine{}
 
 	actAssert := func(x, y, want float64) {
@@ -34,4 +64,12 @@ func TestAdd(t *testing.T) {
 
 		actAssert(x, y, -3.0)
 	})
+}
+
+func BenchmarkAdd(b *testing.B) {
+	ce := calculator.Engine{}
+
+	for i := 0; i < b.N; i++ {
+		ce.Add(1.0, 4.0)
+	}
 }
