@@ -8,9 +8,11 @@ import (
 )
 
 func TestError(t *testing.T) {
-	wrappedErr := format.Error("2%3", errors.New("error msg"))
+	expectedErr := errors.New("error msg")
+	expr := "2%3"
+	wrappedErr := format.Error(expr, expectedErr)
 
 	require.NotNil(t, wrappedErr)
-	require.ErrorContains(t, wrappedErr, "error msg")
-	require.ErrorContains(t, wrappedErr, "2%3")
+	require.ErrorContains(t, wrappedErr, expectedErr.Error())
+	require.ErrorContains(t, wrappedErr, expr)
 }
