@@ -8,6 +8,7 @@ import (
 )
 
 func TestAdd(t *testing.T) {
-	res := calculator.Add(1.0, 1.0)
+	ce := calculator.Engine{}
+	res := ce.Add(1.0, 1.0)
 	require.Equal(t, 2.0, res)
 }
